@@ -15,7 +15,7 @@ RUN apt update && apt install -y \
     wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null && \
     echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list && \
     apt update && \
-    apt-get install -y  ntel-oneapi-mkl-devel-2023.1.0 && \
+    apt-get install -y  intel-oneapi-mkl-devel-2023.1.0 && \
 
 #Clean up
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
