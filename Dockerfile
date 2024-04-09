@@ -18,6 +18,6 @@ RUN apt update && \
     libxtst6 \
     libnss3 \
     libcups2 \
-    libatk1.0-0 &&\
-    npm install --prefix ./ pa11y-ci
+    libatk1.0-0
+RUN npm install --prefix ./ pa11y-ci
 
