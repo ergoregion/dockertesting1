@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master 
+      - pally-image
 
 jobs:
   docker:
