@@ -9,20 +9,18 @@ RUN apt update && apt install -y \
     cmake\
     build-essential \
     cppcheck \
+    libeigen3-dev \
     lcov
 
-#Install MKL
-RUN wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null && \
-    echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list && \
-    apt update && \
-    apt-get install -y  intel-oneapi-mkl-devel-2023.1.0 \
-    cppcheck
-
 #Clean up
-RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+
+#Build Eigen
+ENV  Eigen_DIR=/usr/local/include/eigen3/cmake
+
 #Build GTEST
-RUN   cd /usr/src/gtest && cmake . && make && cp /usr/src/gtest/lib/*.a /usr/lib
+RUN   cd /usr/src/gtest && cmake -B build -DCMAKE_INSTALL_PREFIX=install . && cmake --build ./build --parallel 36 && cmake --install ./build && cp /usr/src/gtest/lib/*.a /usr/lib
+ENV  GTest_DIR=${PWD}/build/
 
 
-ENV MKL_LINK_DIRECTORY=/opt/intel/oneapi/mkl/2023.1.0/lib/intel64
-ENV MKL_INCLUDE_DIRECTORY=/opt/intel/oneapi/mkl/2023.1.0/include
+
