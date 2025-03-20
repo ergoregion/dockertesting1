@@ -9,6 +9,8 @@ RUN apt update && apt install -y \
     cmake\
     build-essential \
     cppcheck \
+    clang-tidy \
+    clang-format \  
     libeigen3-dev \
     lcov
 
