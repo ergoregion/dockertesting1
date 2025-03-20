@@ -19,7 +19,7 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV  Eigen_DIR=/usr/local/include/eigen3/cmake
 
 #Build GTEST
-RUN   cd /usr/src/gtest && cmake -B build -DCMAKE_INSTALL_PREFIX=install . && cmake --build ./build --parallel 36 && cmake --install ./build && cp /usr/src/gtest/lib/*.a /usr/lib
+RUN   cd /usr/src/gtest && cmake -B build -DCMAKE_INSTALL_PREFIX=install . && cmake --build ./build --parallel 36 && cmake --install ./build
 ENV  GTest_DIR=${PWD}/build/
 
 
